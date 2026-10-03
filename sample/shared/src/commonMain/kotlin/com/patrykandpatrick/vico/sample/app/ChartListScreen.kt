@@ -16,6 +16,7 @@
 
 package com.patrykandpatrick.vico.sample.app
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,7 +29,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ChartListScreen(navController: NavController) {
   val charts = Charts.all
@@ -46,20 +47,18 @@ internal fun ChartListScreen(navController: NavController) {
   ) { paddingValues ->
     LazyColumn(
       contentPadding = paddingValues,
-      verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap),
+      verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
       items(charts.size) { chartID ->
-        SegmentedListItem(
-          onClick = { navController.navigate(Destination.Chart(chartID)) },
-          shapes = ListItemDefaults.segmentedShapes(chartID, charts.size),
+        ListItem(
+          headlineContent = { Text(charts[chartID].details.title) },
+          modifier =
+            Modifier.fillMaxWidth()
+              .padding(horizontal = 16.dp)
+              .clickable { navController.navigate(Destination.Chart(chartID)) },
           colors =
-            ListItemDefaults.segmentedColors(
-              containerColor = MaterialTheme.colorScheme.surfaceContainer
-            ),
-          modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-        ) {
-          Text(charts[chartID].details.title)
-        }
+            ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        )
       }
     }
   }

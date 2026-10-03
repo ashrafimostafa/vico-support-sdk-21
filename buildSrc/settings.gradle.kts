@@ -15,6 +15,9 @@
  */
 
 pluginManagement.repositories {
+  if (System.getenv("JITPACK") == null) {
+    maven(url = "https://maven.myket.ir")
+  }
   google()
   gradlePluginPortal()
   mavenCentral()
@@ -24,6 +27,9 @@ pluginManagement.repositories {
 dependencyResolutionManagement {
   repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
   repositories {
+    if (System.getenv("JITPACK") == null) {
+      maven(url = "https://maven.myket.ir")
+    }
     google()
     mavenCentral()
     mavenLocal()

@@ -1,0 +1,12 @@
+jdk:
+  - openjdk17
+install:
+  - ./gradlew
+      :vico:compose:publishToMavenLocal
+      :vico:compose-m2:publishToMavenLocal
+      :vico:compose-m3:publishToMavenLocal
+      :vico:compose-glance:publishToMavenLocal
+      -x test
+      -x dokkaGenerate
+      --no-daemon
+      --stacktrace

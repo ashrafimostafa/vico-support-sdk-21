@@ -19,7 +19,8 @@ import java.time.Year
 plugins { `dokka-convention` }
 
 subprojects {
-  group = "com.patrykandpatrick.vico"
+  // JitPack / Maven coordinates (same pattern as Foreground-App-Checker).
+  group = "com.github.ashrafimostafa.vico-support-sdk-21"
   version = Versions.VICO
 }
 

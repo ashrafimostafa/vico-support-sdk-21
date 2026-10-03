@@ -16,5 +16,6 @@
 
 import org.gradle.api.Project
 
+/** Android/KMP package namespace — kept stable; Maven `group` may differ for JitPack. */
 val Project.moduleNamespace
-  get() = "${group}.${project.name.replace("-", ".")}"
+  get() = "com.patrykandpatrick.vico.${project.name.replace("-", ".")}"

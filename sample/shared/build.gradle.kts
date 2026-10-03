@@ -48,12 +48,12 @@ kotlin {
   sourceSets {
     androidMain.dependencies { implementation(libs.composeUITooling) }
     commonMain.dependencies {
+      implementation(compose.components.uiToolingPreview)
       implementation(libs.composeFoundation)
-      implementation(libs.composeMaterial3Expressive)
+      implementation(libs.composeMaterial3)
       implementation(libs.composeMaterialIcons)
       implementation(libs.composeNavigation)
       implementation(libs.composeUI)
-      implementation(libs.composeUIToolingPreview)
       implementation(libs.kotlinDateTime)
       implementation(libs.lifecycleRuntime)
       implementation(project(":vico:compose"))

@@ -15,6 +15,10 @@
  */
 
 pluginManagement.repositories {
+  // Myket first for local Iran builds; skip on JitPack (cloud cannot reach it reliably).
+  if (System.getenv("JITPACK") == null) {
+    maven(url = "https://maven.myket.ir")
+  }
   google()
   gradlePluginPortal()
   mavenCentral()
@@ -23,6 +27,9 @@ pluginManagement.repositories {
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
   repositories {
+    if (System.getenv("JITPACK") == null) {
+      maven(url = "https://maven.myket.ir")
+    }
     google()
     mavenCentral()
     mavenLocal()

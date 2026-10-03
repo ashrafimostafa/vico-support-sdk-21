@@ -10,29 +10,33 @@ metaLinks:
 
 Ensure the following:
 
-* The Maven Central repository is added to your project.
-* For Android, `minSdk` is set to at least 23.
+* JitPack is added to your project repositories.
+* For Android, `minSdk` is set to at least 21.
+* Use Compose Multiplatform / Jetpack Compose **1.9.x** (Compose 1.10+ requires minSdk 23).
 
 ## Dependencies
 
 Add only the modules you need. `compose-m2` and `compose-m3` provide Material 2 and Material 3 theming, respectively; `compose-glance` provides chart-image composables for Jetpack Glance app widgets.
 
-```toml
-[versions]
-vico = "3.3.1"
+**settings.gradle.kts**
 
-[libraries]
-vico-compose = { group = "com.patrykandpatrick.vico", name = "compose", version.ref = "vico" }
-vico-compose-m2 = { group = "com.patrykandpatrick.vico", name = "compose-m2", version.ref = "vico" }
-vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", version.ref = "vico" }
-vico-compose-glance = { group = "com.patrykandpatrick.vico", name = "compose-glance", version.ref = "vico" }
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+    }
+}
 ```
 
-```kt
+**app/build.gradle.kts**
+
+```kotlin
 dependencies {
-    implementation(libs.vico.compose)
-    implementation(libs.vico.compose.m2)
-    implementation(libs.vico.compose.m3)
-    implementation(libs.vico.compose.glance)
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.0")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m2:1.0.0")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.0")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-glance:1.0.0")
 }
 ```
