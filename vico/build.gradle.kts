@@ -14,26 +14,7 @@
  * limitations under the License.
  */
 
-import java.time.Year
-
-plugins { `dokka-convention` }
-
 subprojects {
-  // JitPack / Maven coordinates (same pattern as Foreground-App-Checker).
   group = "com.github.ashrafimostafa.vico-support-sdk-21"
   version = Versions.VICO
-}
-
-dependencies {
-  dokka(project(":vico:compose"))
-  dokka(project(":vico:compose-glance"))
-  dokka(project(":vico:compose-m2"))
-  dokka(project(":vico:compose-m3"))
-}
-
-dokka {
-  pluginsConfiguration.html {
-    customStyleSheets.from("$rootDir/logo-styles.css")
-    footerMessage = "© ${Year.now().value} Patryk Goworowski and Patrick Michalik"
-  }
 }

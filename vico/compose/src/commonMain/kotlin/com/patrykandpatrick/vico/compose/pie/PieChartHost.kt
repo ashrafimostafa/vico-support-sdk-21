@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(kotlin.uuid.ExperimentalUuidApi::class)
-
 package com.patrykandpatrick.vico.compose.pie
 
 import androidx.compose.animation.core.AnimationSpec

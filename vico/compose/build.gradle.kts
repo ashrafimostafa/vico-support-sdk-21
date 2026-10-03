@@ -14,69 +14,36 @@
  * limitations under the License.
  */
 
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-
 plugins {
-  `dokka-convention`
   `publishing-convention`
-  id("com.android.kotlin.multiplatform.library")
-  alias(libs.plugins.composeMultiplatform)
-  id("org.jetbrains.kotlin.multiplatform")
-  id("org.jetbrains.kotlin.plugin.compose")
+  id("com.android.library")
+  id("org.jetbrains.kotlin.android")
+}
+
+android {
+  configureAndroidLibrary()
+  namespace = moduleNamespace
+  sourceSets.getByName("main") {
+    // Android-only: commonMain only (platform expect/actual inlined for Kotlin 1.9).
+    java.srcDirs("src/commonMain/kotlin")
+    kotlin.srcDirs("src/commonMain/kotlin")
+  }
 }
 
 kotlin {
-  android {
-    configure()
-    namespace = moduleNamespace
-    withHostTest { isIncludeAndroidResources = true }
-  }
-  listOf(iosArm64(), iosSimulatorArm64()).forEach { target ->
-    target.binaries.framework {
-      baseName = project.name
-      isStatic = true
-    }
-  }
-  jvm("desktop")
-  js {
-    browser()
-    binaries.executable()
-  }
-  @OptIn(ExperimentalWasmDsl::class)
-  wasmJs {
-    browser()
-    binaries.executable()
-  }
-  sourceSets {
-    commonMain.dependencies {
-      implementation(libs.androidXAnnotation)
-      implementation(libs.composeFoundation)
-      implementation(libs.composeRuntime)
-      implementation(libs.composeUI)
-      implementation(libs.coroutinesCore)
-      implementation(libs.kotlinStdLib)
-    }
-    // Keep Kotlin test APIs in `commonTest` so target-specific test source sets inherit them.
-    commonTest.dependencies { implementation(libs.kotlinTest) }
-    val desktopTest by getting { dependencies { implementation(compose.desktop.currentOs) } }
-    // MockK isn’t multiplatform, so host-side JVM tests get it here.
-    val androidHostTest by getting { dependencies { implementation(libs.mockK) } }
-  }
   explicitApi()
 }
 
-/*
- * Ensure `./gradlew test` includes this module’s test suite. In this module, the JVM-capable tests
- * live under Android host tests and desktop tests.
- */
-val testTask = tasks.findByName("test")
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  kotlinOptions { jvmTarget = "11" }
+}
 
-if (testTask != null) {
-  testTask.dependsOn("testAndroidHostTest", "desktopTest")
-} else {
-  tasks.register("test") {
-    group = LifecycleBasePlugin.VERIFICATION_GROUP
-    description = "Runs the vico-compose test suite on the JVM (Android host and desktop tests)."
-    dependsOn("testAndroidHostTest", "desktopTest")
-  }
+dependencies {
+  implementation(platform(libs.composeBom))
+  implementation(libs.androidXAnnotation)
+  implementation(libs.composeFoundation)
+  implementation(libs.composeRuntime)
+  implementation(libs.composeUI)
+  implementation(libs.coroutinesCore)
+  implementation(libs.kotlinStdLib)
 }

@@ -7,6 +7,5 @@ install:
       :vico:compose-m3:publishToMavenLocal
       :vico:compose-glance:publishToMavenLocal
       -x test
-      -x dokkaGenerate
       --no-daemon
       --stacktrace

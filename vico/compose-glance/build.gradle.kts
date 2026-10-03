@@ -14,44 +14,28 @@
  * limitations under the License.
  */
 
-import org.gradle.api.attributes.Attribute
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-  `dokka-convention`
   `publishing-convention`
   id("com.android.library")
-  alias(libs.plugins.composeMultiplatform)
-  id("org.jetbrains.kotlin.plugin.compose")
-}
-
-dokka {
-  dokkaSourceSets.register("main") {
-    sourceRoots.from("src/main/kotlin")
-    classpath.from(
-      configurations.named("debugCompileClasspath").map { configuration ->
-        configuration.incoming
-          .artifactView {
-            attributes.attribute(Attribute.of("artifactType", String::class.java), "jar")
-          }
-          .files
-      }
-    )
-  }
+  id("org.jetbrains.kotlin.android")
 }
 
 android {
-  configure()
+  configureAndroidLibrary()
   namespace = moduleNamespace
 }
 
 kotlin {
   explicitApi()
-  compilerOptions { jvmTarget = JvmTarget.JVM_11 }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  kotlinOptions { jvmTarget = "11" }
 }
 
 dependencies {
   api(project(":vico:compose"))
+  implementation(platform(libs.composeBom))
   implementation(libs.glanceAppWidget)
   implementation(libs.uiTextAndroid)
 }

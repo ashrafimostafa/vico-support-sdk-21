@@ -43,14 +43,13 @@ import androidx.compose.ui.util.fastForEach
 import com.patrykandpatrick.vico.compose.cartesian.marker.Interaction
 import com.patrykandpatrick.vico.compose.common.Point
 import com.patrykandpatrick.vico.compose.common.detectZoomGestures
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.contract
 
 private const val BASE_SCROLL_ZOOM_DELTA = 0.1f
 
 private fun Offset.toPoint() = Point(x, y)
 
-@Composable internal expect fun Modifier.extraPointerInput(scrollState: VicoScrollState): Modifier
+@Composable
+internal fun Modifier.extraPointerInput(scrollState: VicoScrollState): Modifier = this
 
 @Composable
 internal fun Modifier.pointerInput(
@@ -170,17 +169,17 @@ private suspend fun PointerInputScope.detectTapGestures(
       } else {
         waitForUpOrCancellation()
       }
-    if (inputChange.isTap(down) && onTap(inputChange.position)) inputChange.consume()
+    val change = inputChange
+    if (change != null && change.isTap(this, down) && onTap(change.position)) change.consume()
   }
 }
 
-@OptIn(ExperimentalContracts::class)
-context(pointerEventScope: AwaitPointerEventScope)
-private fun PointerInputChange?.isTap(firstDown: PointerInputChange): Boolean {
-  contract { returns(true).implies(this@isTap != null) }
-  if (this == null) return false
-  val longPressTimeoutMillis = pointerEventScope.viewConfiguration.longPressTimeoutMillis
-  val touchSlop = pointerEventScope.viewConfiguration.touchSlop
+private fun PointerInputChange.isTap(
+  scope: AwaitPointerEventScope,
+  firstDown: PointerInputChange,
+): Boolean {
+  val longPressTimeoutMillis = scope.viewConfiguration.longPressTimeoutMillis
+  val touchSlop = scope.viewConfiguration.touchSlop
   val isNotLongPress = uptimeMillis - firstDown.uptimeMillis < longPressTimeoutMillis
   val isNotMove = (firstDown.position - position).getDistance() < touchSlop
   return !pressed && previousPressed && isNotLongPress && isNotMove

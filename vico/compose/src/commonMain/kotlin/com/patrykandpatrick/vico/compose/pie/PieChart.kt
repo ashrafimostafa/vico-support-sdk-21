@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(kotlin.uuid.ExperimentalUuidApi::class)
-
 package com.patrykandpatrick.vico.compose.pie
 
 import androidx.compose.runtime.Composable
@@ -44,6 +42,7 @@ import com.patrykandpatrick.vico.compose.common.data.ExtraStore
 import com.patrykandpatrick.vico.compose.common.getRepeating
 import com.patrykandpatrick.vico.compose.common.half
 import com.patrykandpatrick.vico.compose.common.orZero
+import com.patrykandpatrick.vico.compose.common.randomChartId
 import com.patrykandpatrick.vico.compose.common.saveLayer
 import com.patrykandpatrick.vico.compose.common.toRadians
 import com.patrykandpatrick.vico.compose.common.vicoTheme
@@ -53,7 +52,6 @@ import kotlin.math.asin
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.sin
-import kotlin.uuid.Uuid
 
 /** A Compose Multiplatform pie chart. */
 @Stable
@@ -66,7 +64,7 @@ internal constructor(
   internal val valueFormatter: PieValueFormatter,
   internal val legend: Legend<PieChartMeasuringContext, PieChartDrawingContext>?,
   internal val drawingModelInterpolator: PieChartDrawingModelInterpolator,
-  internal val id: Uuid = Uuid.random(),
+  internal val id: String = randomChartId(),
 ) : Bounded {
   override var bounds: Rect = Rect.Zero
 

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalUuidApi::class)
-
 package com.patrykandpatrick.vico.compose.cartesian.data
 
 import androidx.compose.animation.core.AnimationSpec
@@ -30,8 +28,6 @@ import com.patrykandpatrick.vico.compose.common.data.MutableExtraStore
 import com.patrykandpatrick.vico.compose.common.gcdWith
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 import kotlinx.coroutines.*
 
 /** Stores a [CartesianChart]’s data. */
@@ -219,9 +215,9 @@ internal fun CartesianChartModelProducer.collectAsState(
 
 @Composable
 private fun LaunchRegistration(
-  chartID: Uuid,
+  chartID: String,
   isInPreview: Boolean,
-  block: (chartID: Uuid) -> () -> Unit,
+  block: (chartID: String) -> () -> Unit,
 ) {
   val runBlocking = runBlocking
   if (isInPreview && runBlocking != null) {

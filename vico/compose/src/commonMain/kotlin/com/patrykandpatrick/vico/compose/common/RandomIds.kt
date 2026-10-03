@@ -16,9 +16,6 @@
 
 package com.patrykandpatrick.vico.compose.common
 
-import kotlin.coroutines.CoroutineContext
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.runBlocking as kotlinxRunBlocking
+import java.util.UUID
 
-internal val runBlocking: ((CoroutineContext, suspend CoroutineScope.() -> Unit) -> Unit)? =
-  ::kotlinxRunBlocking
+internal fun randomChartId(): String = UUID.randomUUID().toString()

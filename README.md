@@ -2,7 +2,7 @@
 
 A [Vico](https://github.com/patrykandpatrick/vico) chart-library fork that supports **Android API 21+**.
 
-Upstream Vico 3.3.x requires a higher Android `minSdk` because it depends on Compose 1.10+. This fork pins **Compose Multiplatform 1.9.3** so you can use charts in apps that still target Lollipop (API 21).
+Upstream Vico 3.3.x requires a higher Android `minSdk` because it depends on Compose 1.10+. This fork is an **Android-only** build for apps on **Kotlin 1.9 / AGP 8.4 / compileSdk 35 / minSdk 21** (for example Imino).
 
 Chart APIs stay the same as Vico Compose. Full chart docs: [Vico guide](https://guide.vico.patrykandpatrick.com).
 
@@ -17,8 +17,9 @@ Chart APIs stay the same as Vico Compose. Full chart docs: [Vico guide](https://
 |------|--------|
 | Android `minSdk` | 21 |
 | Android `compileSdk` | **35+** (library `minCompileSdk` is 35) |
-| Android Gradle Plugin | **8.4+** (does not require AGP 8.6) |
-| Compose | **1.8.x** transitive (pinning Compose 1.9+ in the app can reintroduce AGP 8.6 / higher `compileSdk` requirements) |
+| Android Gradle Plugin | **8.4+** |
+| Kotlin | **1.9.x** (library metadata is 1.9; does not require Kotlin 2.x) |
+| Compose | Jetpack Compose via BOM **2024.12.01** (Compose Compiler **1.5.3**) |
 | Repository | [JitPack](https://jitpack.io) |
 
 ---
@@ -58,11 +59,11 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.1")
-    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.1")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.2")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.2")
     // Optional:
-    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m2:1.0.1")
-    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-glance:1.0.1")
+    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m2:1.0.2")
+    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-glance:1.0.2")
 }
 ```
 
@@ -70,8 +71,8 @@ Groovy:
 
 ```groovy
 dependencies {
-    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.1'
-    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.1'
+    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.2'
+    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.2'
 }
 ```
 
@@ -121,7 +122,7 @@ includeBuild("../vico-support-sdk-21") {
 }
 ```
 
-Keep the same `implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.1")` (and `-m3`) lines in the app module.
+Keep the same `implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.2")` (and `-m3`) lines in the app module.
 
 ---
 

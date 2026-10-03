@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalUuidApi::class)
-
 package com.patrykandpatrick.vico.compose.cartesian
 
 import androidx.compose.runtime.Composable
@@ -43,8 +41,6 @@ import com.patrykandpatrick.vico.compose.common.data.MutableExtraStore
 import com.patrykandpatrick.vico.compose.common.gcdWith
 import com.patrykandpatrick.vico.compose.common.orZero
 import kotlin.math.abs
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 private fun getDefaultXStep(model: CartesianChartModel, minX: Double): Double {
   var gcd = model.getXDeltaGcd()
@@ -79,7 +75,7 @@ internal constructor(
     getDefaultXStep(model, minX)
   },
   public val markerController: CartesianMarkerController = CartesianMarkerController.showOnPress(),
-  internal val id: Uuid = Uuid.random(),
+  internal val id: String = randomChartId(),
   private var previousMarkerTargetHashCode: Int? = null,
   private val persistentMarkerMap: MutableMap<Double, CartesianMarker> = mutableMapOf(),
   private var previousPersistentMarkerHashCode: Int? = null,
@@ -219,7 +215,7 @@ internal constructor(
     persistentMarkers = persistentMarkers,
     getXStep = getXStep,
     markerController = markerController,
-    id = Uuid.random(),
+    id = randomChartId(),
     previousMarkerTargetHashCode = null,
     persistentMarkerMap = mutableMapOf(),
     previousPersistentMarkerHashCode = null,
@@ -279,7 +275,7 @@ internal constructor(
     persistentMarkers = persistentMarkers,
     getXStep = { model, _, _ -> getXStep(model) },
     markerController = markerController,
-    id = Uuid.random(),
+    id = randomChartId(),
     previousMarkerTargetHashCode = null,
     persistentMarkerMap = mutableMapOf(),
     previousPersistentMarkerHashCode = null,

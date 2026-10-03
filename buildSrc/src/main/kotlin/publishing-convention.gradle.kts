@@ -17,46 +17,27 @@
 plugins { id("com.vanniktech.maven.publish") }
 
 mavenPublishing {
-  val publishToCentral =
-    project.hasProperty("mavenCentralUsername") ||
-      System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null
-
-  // Maven Central + signing only when credentials are present (skip on JitPack/local).
-  if (publishToCentral) {
-    publishToMavenCentral(automaticRelease = true)
-    signAllPublications()
-  }
-
   pom {
-    name = "Vico (SDK 21)"
-    description =
-      "A powerful and extensible multiplatform chart library, with Android minSdk 21 support."
-    url = "https://github.com/ashrafimostafa/vico-support-sdk-21"
+    name.set("Vico (SDK 21)")
+    description.set(
+      "Vico chart library fork for Android minSdk 21, AGP 8.4, and Kotlin 1.9."
+    )
+    url.set("https://github.com/ashrafimostafa/vico-support-sdk-21")
     licenses {
       license {
-        name = "The Apache License, Version 2.0"
-        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        name.set("The Apache License, Version 2.0")
+        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
       }
     }
     scm {
-      connection = "scm:git:git://github.com/ashrafimostafa/vico-support-sdk-21.git"
-      developerConnection = "scm:git:ssh://github.com/ashrafimostafa/vico-support-sdk-21.git"
-      url = "https://github.com/ashrafimostafa/vico-support-sdk-21"
+      connection.set("scm:git:git://github.com/ashrafimostafa/vico-support-sdk-21.git")
+      developerConnection.set("scm:git:ssh://github.com/ashrafimostafa/vico-support-sdk-21.git")
+      url.set("https://github.com/ashrafimostafa/vico-support-sdk-21")
     }
     developers {
       developer {
-        id = "ashrafimostafa"
-        name = "Mostafa Ashrafi"
-      }
-      developer {
-        id = "patrykgoworowski"
-        name = "Patryk Goworowski"
-        email = "contact@patrykgoworowski.pl"
-      }
-      developer {
-        id = "patrickmichalik"
-        name = "Patrick Michalik"
-        email = "contact@patrickmichalik.com"
+        id.set("ashrafimostafa")
+        name.set("Mostafa Ashrafi")
       }
     }
   }

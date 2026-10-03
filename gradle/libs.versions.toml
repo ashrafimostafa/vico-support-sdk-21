@@ -1,65 +1,40 @@
 [versions]
-activity = "1.9.3"
-agp = "9.4.1"
-androidXAnnotation = "1.9.1"
-# Library artifacts: Compose 1.8.x → minSdk 21, minCompileSdk 35, no AGP 8.6 requirement.
-# Gradle plugin stays on 1.9.3 for AGP 9 compatibility (plugin 1.8.x breaks with AGP 9).
-compose = "1.8.2"
-composePlugin = "1.9.3"
-composeSamplePlugin = "1.9.3"
-composeMaterial3 = "1.8.2"
-composeMaterialIcons = "1.7.3"
-composeNavigation = "2.8.0"
-coroutines = "1.9.0"
-dateTime = "0.6.1"
-dokka = "2.2.0"
-glance = "1.1.1"
-jetpackComposeBom = "2025.05.01"
-kotlin = "2.4.20"
-lifecycleRuntime = "2.8.7"
+# Aligned with Imino (AGP 8.4 / Kotlin 1.9.10 / Compose BOM 2024.12.01).
+agp = "8.4.0"
+androidXAnnotation = "1.8.2"
+composeBom = "2024.12.01"
+composeCompilerExtension = "1.5.3"
+coroutines = "1.8.1"
+dokka = "1.9.20"
+glance = "1.1.0"
+kotlin = "1.9.10"
 material = "1.12.0"
-mavenPublish = "0.37.0"
-mockK = "1.14.11"
-screenshot = "0.0.1-alpha15"
-uiTextAndroid = "1.8.2"
+mavenPublish = "0.28.0"
+mockK = "1.13.12"
+uiTextAndroid = "1.7.6"
 
 [libraries]
-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 androidApplication = { group = "com.android.application", name = "com.android.application.gradle.plugin", version.ref = "agp" }
-androidKotlinMultiplatformLibrary = { group = "com.android.kotlin.multiplatform.library", name = "com.android.kotlin.multiplatform.library.gradle.plugin", version.ref = "agp" }
+androidLibrary = { group = "com.android.library", name = "com.android.library.gradle.plugin", version.ref = "agp" }
 androidXAnnotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation" }
-composeCompiler = { group = "org.jetbrains.kotlin.plugin.compose", name = "org.jetbrains.kotlin.plugin.compose.gradle.plugin", version.ref = "kotlin" }
-composeDesktop = { group = "org.jetbrains.compose.desktop", name = "desktop-jvm", version.ref = "compose" }
-composeFoundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose" }
-composeMaterial = { group = "org.jetbrains.compose.material", name = "material", version.ref = "compose" }
-composeMaterial3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "composeMaterial3" }
-composeMaterialIcons = { group = "org.jetbrains.compose.material", name = "material-icons-core", version.ref = "composeMaterialIcons" }
-composeNavigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
-composeRuntime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose" }
-composeUI = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose" }
-composeUITooling = { group = "org.jetbrains.compose.ui", name = "ui-tooling", version.ref = "compose" }
-composeUIToolingPreview = { group = "org.jetbrains.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+composeBom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+composeFoundation = { group = "androidx.compose.foundation", name = "foundation" }
+composeMaterial = { group = "androidx.compose.material", name = "material" }
+composeMaterial3 = { group = "androidx.compose.material3", name = "material3" }
+composeRuntime = { group = "androidx.compose.runtime", name = "runtime" }
+composeUI = { group = "androidx.compose.ui", name = "ui" }
+composeUITooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+composeUIToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 dokka = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
 glanceAppWidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "glance" }
-jetpackComposeBom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpackComposeBom" }
-jetpackComposeUI = { group = "androidx.compose.ui", name = "ui" }
-jetpackComposeUITooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 kotlinAndroid = { group = "org.jetbrains.kotlin.android", name = "org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
-kotlinDateTime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "dateTime" }
-kotlinJvm = { group = "org.jetbrains.kotlin.jvm", name = "org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
 kotlinStdLib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinTest = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
-kotlinTestJunit5 = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit5", version.ref = "kotlin" }
-lifecycleRuntime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntime" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mavenPublish = { group = "com.vanniktech.maven.publish", name = "com.vanniktech.maven.publish.gradle.plugin", version.ref = "mavenPublish" }
 mockK = { group = "io.mockk", name = "mockk", version.ref = "mockK" }
-screenshotValidationApi = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshot" }
-serialization = { group = "org.jetbrains.kotlin.plugin.serialization", name = "org.jetbrains.kotlin.plugin.serialization.gradle.plugin", version.ref = "kotlin" }
 uiTextAndroid = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
 
 [plugins]
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
-composeMultiplatformSample = { id = "org.jetbrains.compose", version.ref = "composeSamplePlugin" }
-screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot" }
+# Kept for tooling that still references the alias; library modules use kotlin-android.

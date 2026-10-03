@@ -15,7 +15,6 @@
  */
 
 pluginManagement.repositories {
-  // Myket first for local Iran builds; skip on JitPack (cloud cannot reach it reliably).
   if (System.getenv("JITPACK") == null) {
     maven(url = "https://maven.myket.ir")
   }
@@ -38,11 +37,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Vico"
 
+// Android-library publish modules only (Kotlin 1.9 / AGP 8.4 consumers).
 include(
-  "sample:android",
-  "sample:desktop",
-  "sample:shared",
-  "sample:web",
   "vico",
   "vico:compose",
   "vico:compose-glance",

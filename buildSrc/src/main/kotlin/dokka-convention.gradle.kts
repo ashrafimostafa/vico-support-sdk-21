@@ -14,6 +14,5 @@
  * limitations under the License.
  */
 
+// Dokka is optional for this fork’s JitPack Android publish path.
 plugins { id("org.jetbrains.dokka") }
-
-dokka { dokkaPublications.configureEach { suppressInheritedMembers = true } }

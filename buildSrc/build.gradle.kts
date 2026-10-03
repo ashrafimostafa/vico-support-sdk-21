@@ -18,11 +18,8 @@ plugins { `kotlin-dsl` }
 
 dependencies {
   implementation(libs.androidApplication)
-  implementation(libs.androidKotlinMultiplatformLibrary)
-  implementation(libs.composeCompiler)
+  implementation(libs.androidLibrary)
   implementation(libs.dokka)
   implementation(libs.kotlinAndroid)
-  implementation(libs.kotlinJvm)
   implementation(libs.mavenPublish)
-  implementation(libs.serialization)
 }

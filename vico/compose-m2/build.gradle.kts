@@ -14,43 +14,31 @@
  * limitations under the License.
  */
 
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-
 plugins {
-  `dokka-convention`
   `publishing-convention`
-  id("com.android.kotlin.multiplatform.library")
-  alias(libs.plugins.composeMultiplatform)
-  id("org.jetbrains.kotlin.multiplatform")
-  id("org.jetbrains.kotlin.plugin.compose")
+  id("com.android.library")
+  id("org.jetbrains.kotlin.android")
+}
+
+android {
+  configureAndroidLibrary()
+  namespace = moduleNamespace
+  sourceSets.getByName("main") {
+    java.srcDirs("src/commonMain/kotlin")
+    kotlin.srcDirs("src/commonMain/kotlin")
+  }
 }
 
 kotlin {
-  android {
-    configure()
-    namespace = moduleNamespace
-  }
-  listOf(iosArm64(), iosSimulatorArm64()).forEach { target ->
-    target.binaries.framework {
-      baseName = project.name
-      isStatic = true
-    }
-  }
-  jvm("desktop")
-  js {
-    browser()
-    binaries.executable()
-  }
-  @OptIn(ExperimentalWasmDsl::class)
-  wasmJs {
-    browser()
-    binaries.executable()
-  }
-  sourceSets {
-    commonMain.dependencies {
-      api(project(":vico:compose"))
-      implementation(libs.composeMaterial)
-    }
-  }
   explicitApi()
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  kotlinOptions { jvmTarget = "11" }
+}
+
+dependencies {
+  api(project(":vico:compose"))
+  implementation(platform(libs.composeBom))
+  implementation(libs.composeMaterial)
 }
