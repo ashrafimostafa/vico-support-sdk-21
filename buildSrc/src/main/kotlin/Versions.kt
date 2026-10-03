@@ -15,7 +15,8 @@
  */
 
 object Versions {
-  const val COMPILE_SDK = 37
+  // 35 matches AGP 8.4 apps on compileSdk 35; keeps published minCompileSdk ≤ 35.
+  const val COMPILE_SDK = 35
   const val MIN_SDK = 21
-  const val VICO = "1.0.0"
+  const val VICO = "1.0.1"
 }

@@ -16,7 +16,9 @@ Chart APIs stay the same as Vico Compose. Full chart docs: [Vico guide](https://
 | Item | Value |
 |------|--------|
 | Android `minSdk` | 21 |
-| Compose | **1.9.x** (Jetpack Compose or Compose Multiplatform). Compose **1.10+** forces `minSdk` 23. |
+| Android `compileSdk` | **35+** (library `minCompileSdk` is 35) |
+| Android Gradle Plugin | **8.4+** (does not require AGP 8.6) |
+| Compose | **1.8.x** transitive (pinning Compose 1.9+ in the app can reintroduce AGP 8.6 / higher `compileSdk` requirements) |
 | Repository | [JitPack](https://jitpack.io) |
 
 ---
@@ -56,11 +58,11 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.0")
-    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.0")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.1")
+    implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.1")
     // Optional:
-    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m2:1.0.0")
-    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-glance:1.0.0")
+    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-m2:1.0.1")
+    // implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose-glance:1.0.1")
 }
 ```
 
@@ -68,8 +70,8 @@ Groovy:
 
 ```groovy
 dependencies {
-    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.0'
-    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.0'
+    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.1'
+    implementation 'com.github.ashrafimostafa.vico-support-sdk-21:compose-m3:1.0.1'
 }
 ```
 
@@ -119,7 +121,7 @@ includeBuild("../vico-support-sdk-21") {
 }
 ```
 
-Keep the same `implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.0")` (and `-m3`) lines in the app module.
+Keep the same `implementation("com.github.ashrafimostafa.vico-support-sdk-21:compose:1.0.1")` (and `-m3`) lines in the app module.
 
 ---
 

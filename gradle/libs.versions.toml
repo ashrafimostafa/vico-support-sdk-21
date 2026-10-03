@@ -1,27 +1,27 @@
 [versions]
-activity = "1.10.1"
+activity = "1.9.3"
 agp = "9.4.1"
-androidXAnnotation = "1.11.0"
-# Compose Multiplatform 1.9.x is the newest line whose Android artifacts still declare
-# minSdk 21. Compose 1.10+ (and thus CMP 1.10+) raise Android minSdk to 23.
-# Versions below follow the CMP 1.9.3 release dependency set.
-compose = "1.9.3"
-composeSample = "1.9.3"
-composeMaterial3 = "1.9.0"
+androidXAnnotation = "1.9.1"
+# Library artifacts: Compose 1.8.x → minSdk 21, minCompileSdk 35, no AGP 8.6 requirement.
+# Gradle plugin stays on 1.9.3 for AGP 9 compatibility (plugin 1.8.x breaks with AGP 9).
+compose = "1.8.2"
+composePlugin = "1.9.3"
+composeSamplePlugin = "1.9.3"
+composeMaterial3 = "1.8.2"
 composeMaterialIcons = "1.7.3"
-composeNavigation = "2.9.1"
-coroutines = "1.11.0"
-dateTime = "0.8.0-0.6.x-compat"
+composeNavigation = "2.8.0"
+coroutines = "1.9.0"
+dateTime = "0.6.1"
 dokka = "2.2.0"
 glance = "1.1.1"
-jetpackComposeBom = "2025.10.01"
+jetpackComposeBom = "2025.05.01"
 kotlin = "2.4.20"
-lifecycleRuntime = "2.9.6"
+lifecycleRuntime = "2.8.7"
 material = "1.12.0"
 mavenPublish = "0.37.0"
 mockK = "1.14.11"
 screenshot = "0.0.1-alpha15"
-uiTextAndroid = "1.9.4"
+uiTextAndroid = "1.8.2"
 
 [libraries]
 activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
@@ -60,9 +60,6 @@ serialization = { group = "org.jetbrains.kotlin.plugin.serialization", name = "o
 uiTextAndroid = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
 
 [plugins]
-# `org.jetbrains.compose` is applied per module rather than shared through buildSrc, so the
-# library and the sample can track different Compose versions (see the `compose` /
-# `composeSample` versions above).
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
-composeMultiplatformSample = { id = "org.jetbrains.compose", version.ref = "composeSample" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
+composeMultiplatformSample = { id = "org.jetbrains.compose", version.ref = "composeSamplePlugin" }
 screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot" }
